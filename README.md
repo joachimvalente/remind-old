@@ -6,11 +6,10 @@ Built with Dart, Flutter and Firebase.
 
 ## Screenshots
 
-![Screenshot1](screenshots/screenshot1.png | width=200)
+<img src="screenshots/screenshot1.png" width="300">
 
-![Screenshot2](screenshots/screenshot2.png)
+<img src="screenshots/screenshot2.png" width="300">
 
-![Screenshot3](screenshots/screenshot3.png)
+<img src="screenshots/screenshot3.png" width="300">
 
-![Screenshot4](screenshots/screenshot4.png)
-
+<img src="screenshots/screenshot4.png" width="300">
