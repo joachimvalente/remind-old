@@ -54,5 +54,14 @@
             </intent-filter>
         </activity>
         <!-- End Facebook login -->
+
+        <!-- Notifications -->
+        <receiver android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationReceiver" />
+        <receiver android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationBootReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"></action>
+            </intent-filter>
+        </receiver>
+        <!-- End notifications -->
     </application>
 </manifest>

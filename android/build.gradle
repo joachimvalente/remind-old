@@ -15,6 +15,9 @@ allprojects {
         google()
         jcenter()
     }
+    configurations.all {
+        resolutionStrategy.force "com.android.support:support-compat:27.1.0"
+    }
 }
 
 rootProject.buildDir = '../build'

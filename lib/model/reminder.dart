@@ -36,15 +36,17 @@ class Reminder {
       : dateCreated = dateCreated ?? DateTime.now();
 
   Reminder.fromSnapshot(DocumentSnapshot snapshot)
-      : this(
-          snapshot['text'],
-          reference: snapshot.reference,
-          rawData: snapshot.data,
-          done: snapshot['done'] != null,
-          dateCreated: snapshot['dateCreated']?.toDate(),
-          preview: snapshot['preview'] != null
-              ? Map<String, dynamic>.from(snapshot['preview'])
-              : null,
-          alert: snapshot['alert']?.toDate(),
-        );
+      : this(snapshot['text'],
+            reference: snapshot.reference,
+            rawData: snapshot.data,
+            done: snapshot['done'] != null,
+            dateCreated: snapshot['dateCreated']?.toDate(),
+            preview: snapshot['preview'] != null
+                ? Map<String, dynamic>.from(snapshot['preview'])
+                : null,
+            alert:
+                // Don't show alerts set in the past.
+                (snapshot['alert']?.toDate()?.isAfter(DateTime.now()) ?? false)
+                    ? snapshot['alert'].toDate()
+                    : null);
 }

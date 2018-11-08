@@ -3,7 +3,7 @@ import 'package:dynamic_theme/dynamic_theme.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:remind/pages/home_page.dart';
 import 'package:remind/pages/login_page.dart';
 import 'package:remind/pages/splash_screen.dart';
@@ -25,9 +25,13 @@ void main() async {
 
 class RemindApp extends StatelessWidget {
   static bool useDarkTheme;
+  static FlutterLocalNotificationsPlugin notifications =
+      FlutterLocalNotificationsPlugin();
 
   @override
   Widget build(BuildContext context) {
+    _initializeLocalNotificationsPlugin(context);
+
     return StreamBuilder<FirebaseUser>(
       stream: FirebaseAuth.instance.onAuthStateChanged,
       builder: (context, snapshot) {
@@ -62,6 +66,24 @@ class RemindApp extends StatelessWidget {
               : lightRemindTheme(),
         );
       },
+    );
+  }
+
+  void _initializeLocalNotificationsPlugin(BuildContext context) {
+    var settingsAndroid = AndroidInitializationSettings('ic_stat_alarm');
+    var settingsIOS = IOSInitializationSettings();
+    notifications.initialize(
+      InitializationSettings(settingsAndroid, settingsIOS),
+      selectNotification: (payload) {
+        _onSelectNotification(context, payload);
+      },
+    );
+  }
+
+  Future _onSelectNotification(BuildContext context, String payload) async {
+    await Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => RemindApp()),
     );
   }
 }

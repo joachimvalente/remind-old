@@ -3,12 +3,14 @@ import 'package:canonical_url/canonical_url.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:timeago/timeago.dart' as timeago;
 import 'package:url_launcher/url_launcher.dart';
 
+import 'package:remind/main.dart';
 import 'package:remind/model/reminder.dart';
 import 'package:remind/themes/themes.dart';
 import 'package:remind/util/regex.dart';
@@ -29,6 +31,8 @@ class ReminderCard extends StatelessWidget {
         _updateText();
       }
     });
+
+    _initializeNotification();
   }
 
   @override
@@ -167,36 +171,40 @@ class ReminderCard extends StatelessWidget {
       if (time == null) {
         return;
       }
-      date = date.add(Duration(hours: time.hour, minutes: time.minute));
-      if (date.isBefore(DateTime.now())) {
+      final dateTime =
+          DateTime(date.year, date.month, date.day, time.hour, time.minute);
+      if (dateTime.isBefore(DateTime.now())) {
         Fluttertoast.showToast(msg: 'Cannot add an alert in the past');
         return;
       }
-      reminder.reference.updateData({'alert': Timestamp.fromDate(date)});
+      reminder.reference.updateData({'alert': Timestamp.fromDate(dateTime)});
     } else {
       // reminder.alert != null
-      showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-              title: Text('Remove alert?'),
-              actions: <Widget>[
-                FlatButton(
-                  child: Text('NO'),
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                ),
-                RaisedButton(
-                  child: Text('YES'),
-                  onPressed: () {
-                    reminder.reference
-                        .updateData({'alert': FieldValue.delete()});
-                    Navigator.of(context).pop();
-                  },
-                )
-              ],
-            ),
-      );
+      reminder.reference.updateData({'alert': FieldValue.delete()});
+
+      // Keeping this code for reference. For now let's not ask confirmation.
+//      showDialog(
+//        context: context,
+//        builder: (context) => AlertDialog(
+//              title: Text('Remove alert?'),
+//              actions: <Widget>[
+//                FlatButton(
+//                  child: Text('NO'),
+//                  onPressed: () {
+//                    Navigator.of(context).pop();
+//                  },
+//                ),
+//                RaisedButton(
+//                  child: Text('YES'),
+//                  onPressed: () {
+//                    reminder.reference
+//                        .updateData({'alert': FieldValue.delete()});
+//                    Navigator.of(context).pop();
+//                  },
+//                )
+//              ],
+//            ),
+//      );
     }
   }
 
@@ -224,7 +232,7 @@ class ReminderCard extends StatelessWidget {
     }
   }
 
-  void _delete(BuildContext context, DismissDirection direction) {
+  void _delete(BuildContext context, DismissDirection direction) async {
     Scaffold.of(context).removeCurrentSnackBar();
     Scaffold.of(context).showSnackBar(SnackBar(
       content: Text(_controller.text.isEmpty
@@ -233,6 +241,7 @@ class ReminderCard extends StatelessWidget {
       action: SnackBarAction(label: 'UNDO', onPressed: _undoDelete),
     ));
 
+    await RemindApp.notifications.cancel(reminder.reference.hashCode);
     reminder.reference.delete();
   }
 
@@ -357,5 +366,25 @@ class ReminderCard extends StatelessWidget {
   void _forceRedraw() {
     // Make a dummy edit to force redraw.
     reminder.reference.updateData({'_dummy': Random().nextDouble()});
+  }
+
+  // TODO: Use FCM instead. If a reminder is added or deleted from another
+  // device, this will get out of sync.
+  void _initializeNotification() async {
+    // Cancel previous notification.
+    await RemindApp.notifications.cancel(reminder.reference.hashCode);
+    if (reminder.alert != null) {
+      var androidPlatformChannelSpecifics = AndroidNotificationDetails(
+          'remind_app_channel_id', 'Remind App', 'Remind App');
+      var iOSPlatformChannelSpecifics = IOSNotificationDetails();
+      NotificationDetails platformChannelSpecifics = NotificationDetails(
+          androidPlatformChannelSpecifics, iOSPlatformChannelSpecifics);
+      await RemindApp.notifications.schedule(
+          reminder.reference.hashCode,
+          'Reminder alert',
+          reminder.text,
+          reminder.alert,
+          platformChannelSpecifics);
+    }
   }
 }

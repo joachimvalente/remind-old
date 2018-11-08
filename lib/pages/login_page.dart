@@ -6,6 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
+import 'package:remind/main.dart';
 import 'package:remind/pages/email_login_page.dart';
 
 typedef LoginCallback = void Function();
@@ -31,6 +32,8 @@ class LoginPageState extends State<LoginPage>
   @override
   void initState() {
     super.initState();
+
+    _cancelAllNotifications();
 
     animationController = AnimationController(
       duration: Duration(milliseconds: 300),
@@ -180,5 +183,9 @@ class LoginPageState extends State<LoginPage>
         return EmailLoginPage();
       }),
     );
+  }
+
+  void _cancelAllNotifications() async {
+    await RemindApp.notifications.cancelAll();
   }
 }
