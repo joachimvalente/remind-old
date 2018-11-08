@@ -1,6 +1,6 @@
 # Remind
 
-Remind – Simple and powerful todo list app.
+Remind – Simple and powerful todo list app ([available](https://play.google.com/store/apps/details?id=com.valente.remind) on the Play Store).
 
 Built with Dart, Flutter and Firebase.
 
