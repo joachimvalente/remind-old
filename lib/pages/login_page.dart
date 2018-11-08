@@ -6,8 +6,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
-import 'package:remind/main.dart';
-import 'package:remind/pages/email_login_page.dart';
+import 'package:Remind/main.dart';
+import 'package:Remind/pages/email_login_page.dart';
 
 typedef LoginCallback = void Function();
 
@@ -169,7 +169,6 @@ class LoginPageState extends State<LoginPage>
         }
         break;
       case FacebookLoginStatus.cancelledByUser:
-        Fluttertoast.showToast(msg: 'Login canceled');
         break;
       case FacebookLoginStatus.error:
         Fluttertoast.showToast(msg: 'Error: ${result.errorMessage}');

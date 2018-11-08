@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-import 'package:remind/themes/themes.dart';
-import 'package:remind/util/regex.dart';
+import 'package:Remind/themes/themes.dart';
+import 'package:Remind/util/regex.dart';
 
 class EmailLoginPage extends StatefulWidget {
   @override

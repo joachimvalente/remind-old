@@ -10,11 +10,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:timeago/timeago.dart' as timeago;
 import 'package:url_launcher/url_launcher.dart';
 
-import 'package:remind/main.dart';
-import 'package:remind/model/reminder.dart';
-import 'package:remind/themes/themes.dart';
-import 'package:remind/util/regex.dart';
-import 'package:remind/widgets/card_action.dart';
+import 'package:Remind/main.dart';
+import 'package:Remind/model/reminder.dart';
+import 'package:Remind/themes/themes.dart';
+import 'package:Remind/util/regex.dart';
+import 'package:Remind/widgets/card_action.dart';
 
 /// A visual card representing a reminder.
 class ReminderCard extends StatelessWidget {

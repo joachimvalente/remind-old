@@ -4,12 +4,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:remind/pages/home_page.dart';
-import 'package:remind/pages/login_page.dart';
-import 'package:remind/pages/splash_screen.dart';
-import 'package:remind/themes/remind_theme_data.dart';
-import 'package:remind/themes/themes.dart';
-import 'package:remind/widgets/reminder_card.dart';
+import 'package:Remind/pages/home_page.dart';
+import 'package:Remind/pages/login_page.dart';
+import 'package:Remind/pages/splash_screen.dart';
+import 'package:Remind/themes/remind_theme_data.dart';
+import 'package:Remind/themes/themes.dart';
+import 'package:Remind/widgets/reminder_card.dart';
 
 void main() async {
   Firestore.instance.settings(timestampsInSnapshotsEnabled: true);

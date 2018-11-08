@@ -6,10 +6,10 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'package:remind/model/reminder.dart';
-import 'package:remind/util/datetime.dart';
-import 'package:remind/widgets/reminder_card.dart';
-import 'package:remind/widgets/section_header.dart';
+import 'package:Remind/model/reminder.dart';
+import 'package:Remind/util/datetime.dart';
+import 'package:Remind/widgets/reminder_card.dart';
+import 'package:Remind/widgets/section_header.dart';
 
 class HomePage extends StatelessWidget {
   final FirebaseUser firebaseUser;

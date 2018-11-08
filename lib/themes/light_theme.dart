@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:remind/themes/remind_theme_data.dart';
+import 'package:Remind/themes/remind_theme_data.dart';
 
 ThemeData lightTheme() {
   return ThemeData.light().copyWith(
