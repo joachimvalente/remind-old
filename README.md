@@ -1,8 +1,16 @@
 # Remind
 
-Reminder app.
+Remind – Simple and powerful todo list app.
 
-## Getting Started
+Built with Dart, Flutter and Firebase.
 
-For help getting started with Flutter, view our online
-[documentation](https://flutter.io/).
+## Screenshots
+
+![Screenshot1](screenshots/screenshot1.png | width=200)
+
+![Screenshot2](screenshots/screenshot2.png)
+
+![Screenshot3](screenshots/screenshot3.png)
+
+![Screenshot4](screenshots/screenshot4.png)
+
