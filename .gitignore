@@ -1,0 +1,23 @@
+.DS_Store
+.dart_tool/
+
+.packages
+.pub/
+
+build/
+
+.flutter-plugins
+
+.idea/
+*.iml
+
+pubspec.lock
+
+google-services.json
+
+# iOS
+.DS_Store
+Pods/
+Podfile.lock
+xcuserdata/
+*.xcworkspace/
