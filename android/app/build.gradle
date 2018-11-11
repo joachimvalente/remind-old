@@ -39,7 +39,7 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "com.valente.remind"
+        applicationId "com.remind.remind"
         minSdkVersion 16
         targetSdkVersion 27
         versionCode flutterVersionCode.toInteger()
@@ -60,10 +60,11 @@ android {
         release {
             signingConfig signingConfigs.release
 
-            minifyEnabled true
-            useProguard true
-
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            // TODO: Uncommenting this makes the app crash. Figure out why and fix it.
+//            minifyEnabled true
+//            useProguard true
+//
+//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
         debug {
             signingConfig signingConfigs.debug

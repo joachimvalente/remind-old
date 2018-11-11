@@ -1,4 +1,4 @@
-package com.valente.remind;
+package com.remind.remind;
 
 import android.os.Bundle;
 import io.flutter.app.FlutterActivity;

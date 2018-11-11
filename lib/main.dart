@@ -39,8 +39,11 @@ class RemindApp extends StatelessWidget {
           return SplashScreen();
         }
         if (!snapshot.hasData) {
-          return MaterialApp(
-            home: LoginPage(),
+          return RemindTheme(
+            child: MaterialApp(
+              home: LoginPage(),
+              theme: darkTheme(),
+            )
           );
         }
         return _buildHomePage(snapshot.data);
@@ -74,7 +77,7 @@ class RemindApp extends StatelessWidget {
     var settingsIOS = IOSInitializationSettings();
     notifications.initialize(
       InitializationSettings(settingsAndroid, settingsIOS),
-      selectNotification: (payload) {
+      onSelectNotification: (payload) {
         _onSelectNotification(context, payload);
       },
     );

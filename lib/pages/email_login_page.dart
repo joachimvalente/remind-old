@@ -121,6 +121,7 @@ class EmailLoginPageState extends State<EmailLoginPage> {
                                 _login(createUser: false);
                               },
                               child: Text('Log in'),
+                              color: Theme.of(context).accentColor,
                             ),
                           ],
                         ),
