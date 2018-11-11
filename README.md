@@ -6,7 +6,7 @@ Built with Dart, Flutter and Firebase.
 
 ## Screenshots
 
-<img src="screenshots/screenshot0.png" width="300">
+<img src="screenshots/screenshot1.png" width="300">
 
 <img src="screenshots/screenshot1.png" width="300">
 
@@ -15,3 +15,9 @@ Built with Dart, Flutter and Firebase.
 <img src="screenshots/screenshot3.png" width="300">
 
 <img src="screenshots/screenshot4.png" width="300">
+
+<img src="screenshots/screenshot5.png" width="300">
+
+<img src="screenshots/screenshot6.png" width="300">
+
+<img src="screenshots/screenshot7.png" width="300">
