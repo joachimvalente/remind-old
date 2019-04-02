@@ -1,6 +1,8 @@
-# Remind
+# Remind [OLD VERSION]
 
-Remind – Simple and powerful todo list app ([available](https://play.google.com/store/apps/details?id=com.remind.remind) on the Play Store).
+Remind – Simple and powerful todo list app.
+
+A **new version** of this is [available](https://play.google.com/store/apps/details?id=com.dontaskwhy.remind) on the Play Store.
 
 Built with Dart, Flutter and Firebase.
 
